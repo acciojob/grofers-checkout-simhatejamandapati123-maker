@@ -1,2 +1,21 @@
 
 /* Your CSS Code here. */
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+table {
+    width: 300px;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+td {
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+td.prices {
+    text-align: right;
+}
