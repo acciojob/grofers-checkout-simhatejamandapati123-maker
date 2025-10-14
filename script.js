@@ -1,29 +1,20 @@
-window.onload = function () {
-    // Step 1: Select all elements with class 'prices'
-    const priceElements = document.querySelectorAll('.prices');
-
+ const priceElements = document.querySelectorAll('.prices');
     let total = 0;
 
-    // Step 2: Loop through and sum up the prices
-    priceElements.forEach(priceEl => {
-        const priceText = priceEl.textContent.trim();
-        const price = parseFloat(priceText);
-        if (!isNaN(price)) {
-            total += price;
-        }
+    // Sum all the prices
+    priceElements.forEach(price => {
+      total += parseFloat(price.textContent);
     });
 
-    // Step 3: Create a new row and cell
+    // Create a new row for total
     const table = document.getElementById('grocery-table');
-    const newRow = document.createElement('tr');
+    const totalRow = document.createElement('tr');
+    totalRow.classList.add('total-row');
+
     const totalCell = document.createElement('td');
+    totalCell.colSpan = 2; // Span across both columns
+    totalCell.textContent = `Total Price: ₹${total}`;
 
-    // Set the colspan to span full row
-    totalCell.colSpan = 2;
-    totalCell.textContent = "Total Price: ₹" + total.toFixed(2);
-    totalCell.style.fontWeight = 'bold';
-    totalCell.style.textAlign = 'right';
-
-    newRow.appendChild(totalCell);
-    table.appendChild(newRow);
-};
+    totalRow.appendChild(totalCell);
+    table.appendChild(totalRow);
+  </script>
