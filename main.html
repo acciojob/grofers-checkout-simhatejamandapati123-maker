@@ -32,52 +32,47 @@
   </style>
 </head>
 <body>
-  <table id="groceryTable">
-    <tr>
-      <th>Item</th>
-      <th>Price</th>
-    </tr>
-    <tr>
-      <td class="item">Apples</td>
-      <td class="price" contenteditable="true">50</td>
-    </tr>
-    <tr>
-      <td class="item">Bananas</td>
-      <td class="price" contenteditable="true">30</td>
-    </tr>
-    <tr>
-      <td class="item">Milk</td>
-      <td class="price" contenteditable="true">25</td>
-    </tr>
-    <tr>
-      <td class="item">Bread</td>
-      <td class="price" contenteditable="true">45</td>
-    </tr>
-    <tr>
-      <td class="item">Eggs</td>
-      <td class="price" contenteditable="true">60</td>
-    </tr>
-  </table>
+<table id="grocery">
+  <tr>
+    <td class="item">Apples</td>
+    <td class="price" contenteditable="true">55</td>
+  </tr>
+  <tr>
+    <td class="item">Bananas</td>
+    <td class="price" contenteditable="true">75</td>
+  </tr>
+  <tr>
+    <td class="item">Milk</td>
+    <td class="price" contenteditable="true">100</td>
+  </tr>
+  <tr>
+    <td class="item">Bread</td>
+    <td class="price" contenteditable="true">130</td>
+  </tr>
+  <tr>
+    <td class="item">Juice</td>
+    <td class="price" contenteditable="true">50</td>
+  </tr>
+</table>
 
-  <button id="calcBtn">Calculate Total</button>
-  <span id="ans"></span>
+<button onclick="calculateTotal()">Calculate Total</button>
+<span id="ans"></span>
+<script>
+function calculateTotal() {
+  // Get all price cells
+  const prices = document.querySelectorAll(".price");
+  let sum = 0;
 
-  <script>
-    document.getElementById("calcBtn").addEventListener("click", function() {
-      const prices = document.querySelectorAll(".price");
-      let total = 0;
+  // Loop through each price and add to sum
+  for (let i = 0; i < prices.length; i++) {
+    const val = parseFloat(prices[i].innerText.trim());
+    if (!isNaN(val)) sum += val;
+  }
 
-      for (let i = 0; i < prices.length; i++) {
-        // Extract only numeric value, in case test types extra characters
-        let val = prices[i].textContent.trim();
-        val = val.replace(/[^0-9.\-]/g, ""); // remove non-numeric chars
-        let num = parseFloat(val);
-        if (!isNaN(num)) total += num;
-      }
+  // Display total in #ans
+  document.getElementById("ans").innerText = sum;
+}
+</script>
 
-      // Display total
-      document.getElementById("ans").textContent = total;
-    });
-  </script>
 </body>
 </html>
