@@ -66,10 +66,16 @@
     document.getElementById("calcBtn").addEventListener("click", function() {
       const prices = document.querySelectorAll(".price");
       let total = 0;
+
       for (let i = 0; i < prices.length; i++) {
-        let val = parseFloat(prices[i].textContent);
-        if (!isNaN(val)) total += val;
+        // Extract only numeric value, in case test types extra characters
+        let val = prices[i].textContent.trim();
+        val = val.replace(/[^0-9.\-]/g, ""); // remove non-numeric chars
+        let num = parseFloat(val);
+        if (!isNaN(num)) total += num;
       }
+
+      // Display total
       document.getElementById("ans").textContent = total;
     });
   </script>
